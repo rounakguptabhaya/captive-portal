@@ -1,0 +1,273 @@
+<div
+  class="relative z-10"
+  *ngIf="isSlideOverOpen"
+  aria-labelledby="slide-over-title"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-20 transition-opacity"></div>
+
+  <div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div
+        class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10"
+      >
+        <div
+          class="pointer-events-auto relative w-screen max-w-md transform transition ease-in-out duration-1000"
+          [ngClass]="{
+            'translate-x-0': isSlideOverOpen,
+            'translate-x-full': !isSlideOverOpen
+          }"
+        >
+          <div
+            class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl"
+          >
+            <div class="flex ml-auto mr-3 hover:bg-blue-500 rounded-lg p-2">
+              <button
+                type="button"
+                (click)="closeSlideOver()"
+                class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <span class="absolute -inset-2.5"></span>
+                <span class="sr-only">Close panel</span>
+                <svg
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div class="px-4 sm:px-6">
+              <h2
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="slide-over-title"
+              >
+                Logo
+              </h2>
+            </div>
+            <div class="relative flex-col px-4 sm:px-6 mb-10">
+              <form class="flex items-center space-x-6">
+                <label class="block">
+                  <input
+                    accept="image/png, image/jpeg"
+                    type="file"
+                    (change)="onFileChange($event)"
+                    class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                  />
+                </label>
+              </form>
+            </div>
+
+            <div class="px-4 sm:px-6">
+              <h2
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="slide-over-title"
+              >
+                Background Image
+              </h2>
+            </div>
+            <div class="relative flex-col px-4 sm:px-6 mb-10">
+              <form class="flex items-center space-x-6">
+                <label class="block">
+                  <input
+                    accept="image/png, image/jpeg"
+                    type="file"
+                    (change)="onBackgroundChange($event)"
+                    class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100"
+                  />
+                </label>
+              </form>
+            </div>
+
+            <div class="px-4 sm:px-6 mt-10">
+              <h2
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="slide-over-title"
+              >
+                Title Text
+              </h2>
+            </div>
+            <div class="relative flex-col px-4 sm:px-6 mb-10">
+              <div class="mb-4">
+                <input
+                  [(ngModel)]="titleText"
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="titleText"
+                  type="text"
+                  placeholder="Welcome to kloudspot"
+                />
+              </div>
+            </div>
+
+            <div class="px-4 sm:px-6">
+              <h2
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="slide-over-title"
+              >
+                Form Fields
+              </h2>
+            </div>
+            <div class="relative flex-col px-4 sm:px-6">
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.button"
+                  (change)="onCheckboxChange(componentNames.button)"
+                  >Add Button</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.input"
+                  (change)="onCheckboxChange(componentNames.input)"
+                  >Add Input</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.password"
+                  (change)="onCheckboxChange(componentNames.password)"
+                  >Add Password</mat-slide-toggle
+                >
+              </div>
+            </div>
+
+            <div class="px-4 sm:px-6 mt-10">
+              <h2
+                class="text-base font-semibold leading-6 text-gray-900"
+                id="slide-over-title"
+              >
+                Auth Buttons
+              </h2>
+            </div>
+            <div class="relative flex-col px-4 sm:px-6">
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.facebook"
+                  (change)="onCheckboxChange(componentNames.facebook)"
+                  >Add Facebook Auth</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.google"
+                  (change)="onCheckboxChange(componentNames.google)"
+                  >Add Google Auth</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.github"
+                  (change)="onCheckboxChange(componentNames.github)"
+                  >Add Github Auth</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.linkedin"
+                  (change)="onCheckboxChange(componentNames.linkedin)"
+                  >Add Linkedin Auth</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.apple"
+                  (change)="onCheckboxChange(componentNames.apple)"
+                  >Add Apple Auth</mat-slide-toggle
+                >
+              </div>
+              <div class="mb-3">
+                <mat-slide-toggle
+                  color="primary"
+                  [(ngModel)]="checkboxState.twitter"
+                  (change)="onCheckboxChange(componentNames.twitter)"
+                  >Add Twitter Auth</mat-slide-toggle
+                >
+              </div>
+            </div>
+
+            <div class="px-4 sm:px-6 mt-10">
+              <button
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                (click)="exportTemplate()"
+              >
+                Export Template
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="absolute top-0">
+  <button (click)="openSlideOver()" class="btn btn-primary mat-icon-list">
+    <mat-icon class="bg-white mt-3 ml-5 rounded-md">list</mat-icon>
+  </button>
+</div>
+
+<div
+  [ngStyle]="{ 'background-image': 'url(' + backgroundImg + ')' }"
+  class="workspace-container"
+>
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm" id="template-container">
+      <div class="sm:mx-auto sm:w-full sm:max-w-sm m-5">
+        <img [src]="imageUrl" class="h-16 w-15 mx-auto max-w-sm mb-10" alt="" />
+        <h2
+          class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+        >
+          {{ titleText }}
+        </h2>
+      </div>
+
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <div
+          *ngFor="let component of componentsPos"
+          class="example-box"
+          cdkDrag
+        >
+          <ng-container [ngSwitch]="component.type">
+            <app-input *ngSwitchCase="'input'"></app-input>
+            <app-password *ngSwitchCase="'password'"></app-password>
+            <app-button *ngSwitchCase="'button'"></app-button>
+          </ng-container>
+        </div>
+      </div>
+
+      <div
+        cdkDropList
+        class="example-list"
+        (cdkDropListDropped)="authdrop($event)"
+      >
+        <div *ngFor="let auth of authBtns" class="example-box" cdkDrag>
+          <ng-container [ngSwitch]="auth.type">
+            <app-google *ngSwitchCase="'google'"></app-google>
+            <app-facebook *ngSwitchCase="'facebook'"></app-facebook>
+            <app-github *ngSwitchCase="'github'"></app-github>
+            <app-twitter *ngSwitchCase="'twitter'"></app-twitter>
+            <app-linkedin *ngSwitchCase="'linkedin'"></app-linkedin>
+            <app-apple *ngSwitchCase="'apple'"></app-apple>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
